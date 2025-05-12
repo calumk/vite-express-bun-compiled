@@ -4,7 +4,7 @@
 // 2. Once built, run : bunx make-vfs --dir ./dist --content-format string --outfile ./src/client-bundle-vfs.js
 
 // First we need to 
-import staticRoutes from "../../dist/client-bundle-vfs.js";
+import staticRoutes from "../../bundle/client-bundle-vfs.js";
 
 
 import { lookup } from "es-mime-types"

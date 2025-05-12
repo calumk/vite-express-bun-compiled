@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 myServer
+bundle
 
 # Editor directories and files
 .vscode/*
