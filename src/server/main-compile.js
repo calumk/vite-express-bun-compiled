@@ -27,19 +27,28 @@ app.use((req, res, next) => {
   // Normalize the path by removing trailing slashes
   // remove the leading slash
   const normalizedPath = path.replace(/^\//, "").replace(/\/$/, "");
-  // console.log("Request for static file:", path);
+  console.log("Request for static file:", path);
+
+  // log true/false if the path exists in staticRoutes
+  console.log("Path exists in staticRoutes:", staticRoutes[normalizedPath] !== undefined);
 
   if (staticRoutes[normalizedPath]) {
     // Serve the static file using Bun.file
     let mimeType = lookup(normalizedPath);
-    return res.status(200).type(mimeType).send(staticRoutes[normalizedPath]);
+    let decodedFile = Buffer.from(staticRoutes[normalizedPath], 'base64')
+    console.log("returning file", normalizedPath, "with mime type", mimeType);
+    return res.status(200).type(mimeType).send(decodedFile);
   }
   next();
 });
 
 // Fallback to assist vue-router
 app.use((req, res) => {
-  return res.status(200).type("text/html").send(staticRoutes["index.html"]);
+
+  let index = staticRoutes["index.html"];
+  // this is base64 encoded, so we need to decode it
+  let decodedIndex = Buffer.from(index, 'base64')
+  return res.status(200).type("text/html").send(decodedIndex);
 });
   
 

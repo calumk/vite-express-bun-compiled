@@ -14,7 +14,7 @@ echo " "
 echo "--------------------------------------"
 echo "Starting VFS build...."
 # Then we take the whole dist folder and create a vfs bundle. this is required so that we can embed the client bundle into the server bundle.
-bunx make-vfs --dir ./dist --content-format string --outfile ./bundle/client-bundle-vfs.js
+bun ./make-vfs-ck.js --dir ./dist --outfile ./bundle/client-bundle-vfs.js
 # Log the output of the vfs bundle
 echo "VFS bundle built successfully."
 echo "--------------------------------------"

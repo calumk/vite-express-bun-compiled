@@ -6,7 +6,8 @@
         <Card class="mb-4">
             <template #header>
                 <div class="flex justify-content-center">
-                    <img src="../assets/vue.svg" alt="Vue Logo" class="vue-logo" />
+                    <img src="../assets/vue.svg" alt="Vue Logo" class="vue-logo mr-2" />
+                    <img src="../assets/bun.png" alt="Bun Logo" class="vue-logo" />
                 </div>
             </template>
             <template #title>
