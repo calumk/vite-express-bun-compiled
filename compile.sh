@@ -3,19 +3,23 @@
 
 # First we build the client bundle (This is the vue/vite part)
 echo " "
-echo " "
 echo "--------------------------------------"
 echo "Starting Vite build...."
-vite build
+echo " "
+bunx vite build
+echo " "
 echo "Client bundle built successfully."
 echo "--------------------------------------"
 echo " "
 echo " "
+echo " "
 echo "--------------------------------------"
 echo "Starting VFS build...."
+echo " "
 # Then we take the whole dist folder and create a vfs bundle. this is required so that we can embed the client bundle into the server bundle.
 bun ./make-vfs-ck.js --dir ./dist --outfile ./bundle/client-bundle-vfs.js
 # Log the output of the vfs bundle
+echo " "
 echo "VFS bundle built successfully."
 echo "--------------------------------------"
 echo " "

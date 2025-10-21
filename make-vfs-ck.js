@@ -7,9 +7,11 @@
 
 // It is a single file script with no dependencies, and seems to work better!
 
+// Note - Bun native file system APIs cant be used in all contexts - (mkdir) so we use fs/promises
+
 
 import { join, relative } from "path";
-import { readdir } from "fs/promises";
+import { readdir, mkdir } from "fs/promises";
 import { readFile } from "fs/promises";
 
 // Parse command line arguments
@@ -73,6 +75,14 @@ async function traverseDirectory(dir, baseDir = dir) {
 console.log(`Starting to bundle directory: ${targetDir}`);
 
 try {
+  // Ensure the target directory exists; create it if it doesn't.
+  try {
+    await mkdir(targetDir, { recursive: true });
+    console.log(`Ensured directory exists: ${targetDir}`);
+  } catch (mkErr) {
+    console.error(`Unable to create or access directory ${targetDir}:`, mkErr);
+    process.exit(1);
+  }
   // Execute the traversal
   await traverseDirectory(targetDir);
   
